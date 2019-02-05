@@ -46,12 +46,15 @@ public:
         USE_MATERIAL_NAMES = 1 << (IfcGeom::IteratorSettings::NUM_SETTINGS + 3),
 		/// Use element types instead of unique IDs for naming elements.
 		/// Applicable for DAE output.
-		USE_ELEMENT_TYPES = 1 << (IfcGeom::IteratorSettings::NUM_SETTINGS + 4),
+		USE_ELEMENT_TYPES = 1 << (IfcGeom::IteratorSettings::NUM_SETTINGS + 4),		
+		/// Use element GUIDs combined with names and types instead of unique IDs for naming elements.
+		/// Applicable for DAE output.
+		USE_ELEMENT_GUIDS_NAMES_TYPES = 1 << (IfcGeom::IteratorSettings::NUM_SETTINGS + 5),
 		/// Order the elements using their IfcBuildingStorey parent
 		/// Applicable for DAE output
-		USE_ELEMENT_HIERARCHY = 1 << (IfcGeom::IteratorSettings::NUM_SETTINGS + 5),
+		USE_ELEMENT_HIERARCHY = 1 << (IfcGeom::IteratorSettings::NUM_SETTINGS + 6),
         /// Number of different setting flags.
-        NUM_SETTINGS = 5
+        NUM_SETTINGS = 6
     };
 
     SerializerSettings()

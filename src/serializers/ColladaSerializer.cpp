@@ -456,11 +456,15 @@ std::string ColladaSerializer::differentiateSlabTypes(const IfcUtil::IfcBaseEnti
 
 std::string ColladaSerializer::object_id(const IfcGeom::Element<real_t>* o) /*override*/
 {
-    if (settings_.get(SerializerSettings::USE_ELEMENT_TYPES)) {
+    if (settings_.get(SerializerSettings::USE_ELEMENT_TYPES) || settings_.get(SerializerSettings::USE_ELEMENT_GUIDS_NAMES_TYPES)) {
         const std::string slabSuffix = (o->product() && o->product()->declaration().name() == "IfcSlab")
             ? differentiateSlabTypes(o->product())
             : "";
-        return o->type() + slabSuffix;
+
+		if (settings_.get(SerializerSettings::USE_ELEMENT_GUIDS_NAMES_TYPES))
+			return o->guid() + '|' + o->name() + '|' + o->type() + slabSuffix;
+		else
+			return o->type() + slabSuffix;
     }
     return GeometrySerializer::object_id(o);
 }
